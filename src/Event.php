@@ -1,8 +1,9 @@
 <?php
 
-namespace mhndev\Event;
+namespace mhndev\event;
 
 use Closure;
+use mhndev\event\Exceptions\EventHandlerAlreadyExist;
 
 /**
  * Class Event
@@ -34,9 +35,14 @@ class Event
     /**
      * @param $event
      * @param Closure $func
+     * @param bool $overrideHandler
+     * @throws EventHandlerAlreadyExist
      */
-    public static function bind($event, Closure $func)
+    public static function bind($event, Closure $func, $overrideHandler = false)
     {
+        if( !$overrideHandler && !empty(self::$events[$event]) )
+            throw new EventHandlerAlreadyExist;
+        
         self::$events[$event][] = $func;
     }
 }
