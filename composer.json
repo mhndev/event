@@ -1,0 +1,18 @@
+{
+  "name": "mhndev/event",
+  "license": "MIT",
+  "type": "library",
+  "Description": "simple and light library to work event oriented in php",
+  "keywords":["event","event based", "event oriented", "php", "php event", "trigger event", "bind event"],
+  "autoload": {
+    "psr-4": {
+      "mhndev\\event\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=5.3.9"
+  },
+  "require-dev": {
+
+  }
+}
