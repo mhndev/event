@@ -34,11 +34,11 @@ class Event
 
     /**
      * @param $event
-     * @param Closure $func
+     * @param callable $func
      * @param bool $overrideHandler
      * @throws EventHandlerAlreadyExist
      */
-    public static function bind($event, Closure $func, $overrideHandler = false)
+    public static function bind($event, Callable $func, $overrideHandler = false)
     {
         if( !$overrideHandler && !empty(self::$events[$event]) )
             throw new EventHandlerAlreadyExist;
