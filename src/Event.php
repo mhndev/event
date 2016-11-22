@@ -2,7 +2,6 @@
 
 namespace mhndev\event;
 
-use Closure;
 use mhndev\event\Exceptions\EventHandlerAlreadyExist;
 
 /**
@@ -17,16 +16,20 @@ class Event
     public static $events = array();
 
     /**
-     * @param $event
-     * @param array $args
+     *
      */
-    public static function trigger($event, $args = array())
+    public static function trigger()
     {
-        if(isset(self::$events[$event])) {
+        $args = func_get_args();
+        $event = $args[0];
+
+        unset($args[0]);
+
+        if(isset(self::$events[$event] )) {
 
             foreach(self::$events[$event] as $func) {
 
-                call_user_func($func, $args);
+                call_user_func_array($func, $args);
             }
         }
 
@@ -42,7 +45,7 @@ class Event
     {
         if( !$overrideHandler && !empty(self::$events[$event]) )
             throw new EventHandlerAlreadyExist;
-        
+
         self::$events[$event][] = $func;
     }
 }
