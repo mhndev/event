@@ -1,5 +1,4 @@
 <?php
-
 namespace mhndev\event;
 
 use mhndev\event\Exceptions\EventHandlerAlreadyExist;
@@ -15,8 +14,9 @@ class Event
      */
     public static $events = array();
 
+
     /**
-     *
+     * @return mixed
      */
     public static function trigger()
     {
@@ -28,8 +28,7 @@ class Event
         if(isset(self::$events[$event] )) {
 
             foreach(self::$events[$event] as $func) {
-
-                call_user_func_array($func, $args);
+                return call_user_func_array($func, $args);
             }
         }
 
