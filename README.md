@@ -11,6 +11,7 @@ composer require mhndev/event
 ## Sample Usage
 
 ### bind an closure to an event
+
 ```php
 
 Event::bind('order.payed',function($order){
@@ -50,7 +51,7 @@ Binding an observer for a specific event on a model.
 
 ```php
 
-BaseEntityDriver::addObserver('before_update', function($driver){
+User::addObserver('before_update', function($driver){
 
 });
 ```
