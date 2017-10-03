@@ -24,12 +24,9 @@ class Event
         $event = $args[0];
 
         unset($args[0]);
-
         if(isset(self::$events[$event] )) {
-
             foreach(self::$events[$event] as $func) {
-
-                return call_user_func_array($func, $args);
+                return call_user_func_array($func(), $args);
             }
         }
 
@@ -48,4 +45,5 @@ class Event
 
         self::$events[$event][] = $func;
     }
+
 }
